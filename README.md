@@ -1,1 +1,1 @@
-# school_management_system
+# Sistema de gerenciamento escolar.
