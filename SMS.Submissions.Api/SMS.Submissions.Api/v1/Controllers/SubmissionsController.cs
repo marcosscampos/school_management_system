@@ -57,7 +57,7 @@ public class SubmissionsController : ControllerBase
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(NonSuccessResponse), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(NonSuccessResponse), (int)HttpStatusCode.InternalServerError)]
-    public async Task<IActionResult> PublishGrade([FromBody] SubmissionDto dto)
+    public async Task<IActionResult> PublishSubmission([FromBody] SubmissionDto dto)
     {
         await _submissionService.CreateSubmission(dto);
         return StatusCode(StatusCodes.Status201Created, "Submission processed!");

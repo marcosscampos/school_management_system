@@ -55,7 +55,7 @@ public class ActivitiesController : ControllerBase
     [HttpGet("{id:long}")]
     [ProducesResponseType(typeof(ActivityDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NonSuccessResponse), (int)HttpStatusCode.InternalServerError)]
-    public async Task<IActionResult> GetCategoryById([FromRoute] long id)
+    public async Task<IActionResult> GetActivityById([FromRoute] long id)
     {
         var activity = await _activityService.GetActivity(id);
         return Ok(activity);
@@ -73,7 +73,7 @@ public class ActivitiesController : ControllerBase
     [ProducesResponseType(typeof(ActivityDto), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(NonSuccessResponse), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(NonSuccessResponse), (int)HttpStatusCode.InternalServerError)]
-    public async Task<IActionResult> CreateCategory([FromBody] ActivityDto dto)
+    public async Task<IActionResult> PublishActivity([FromBody] ActivityDto dto)
     {
         var activity = await _activityService.PublishActivity(dto);
         return StatusCode(StatusCodes.Status201Created, activity);
