@@ -31,7 +31,7 @@ public class SubmissionsController : ControllerBase
     }
     
     /// <summary>
-    /// Get a submission by id
+    /// Get a submission by activityId
     /// </summary>
     /// <returns></returns>
     /// <response code="200">Returns submission</response>

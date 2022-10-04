@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Net;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using SMS.Activities.Application.Dto;
 using SMS.Activities.CrossCutting.Exceptions;
@@ -50,7 +51,10 @@ namespace SMS.Activities.Domain
             _httpClient.BaseAddress = new Uri(_configuration["Submissions:Url"]);
             _httpClient.Timeout = TimeSpan.FromMilliseconds(double.Parse(_configuration["Submissions:Timeout"]));
 
-            var response = await _httpClient.GetAsync(_configuration["Submissions:Endpoint"] + $"/{activityId}");
+            var response = await _httpClient.GetAsync(_configuration["Submissions:Endpoint"] + $"?ActivityId={activityId}");
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                throw new NotFoundException($"Submission not found with id #{activityId}.");
+            
             var submissions = JsonConvert.DeserializeObject<List<Submission>>(await response.Content.ReadAsStringAsync());
 
             return submissions.ToModelList();

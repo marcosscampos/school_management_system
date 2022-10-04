@@ -8,20 +8,16 @@ public static class Converter
     public static IEnumerable<ActivityDto> ToModelList(this IEnumerable<Activity> activityList)
         => activityList.Select(item => new ActivityDto
         {
-            Id = item.Id,
             Content = item.Content,
             DeadLine = item.DeadLine,
-            CreatedAt = item.CreatedDate,
             TeacherId = item.TeacherId
         });
 
     public static ActivityDto ToModel(this Activity activity)
         => new()
         {
-            Id = activity.Id,
             Content = activity.Content,
             DeadLine = activity.DeadLine,
-            CreatedAt = activity.CreatedDate,
             TeacherId = activity.TeacherId
         };
 
@@ -40,12 +36,11 @@ public static class Converter
             DeadLine = activity.DeadLine,
             TeacherId = activity.TeacherId,
         };
-    
+
     public static IEnumerable<SubmissionDto> ToModelList(this IEnumerable<Submission> submissions)
         => submissions.Select(item => new SubmissionDto
         {
-            Id = item.Id,
+            StudentId = item.StudentId,
             GradeId = item.GradeId,
         });
-
 }

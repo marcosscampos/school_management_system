@@ -29,7 +29,7 @@ namespace SMS.Submissions.Domain
         {
             var submission = await _submissionRepository.GetById(id);
             if (submission is null)
-                throw new NotFoundException($"Submission not found with id #{id}");
+                throw new NotFoundException($"Submissions not found with activity id #{id}");
 
             return submission.ToModel();
         }
