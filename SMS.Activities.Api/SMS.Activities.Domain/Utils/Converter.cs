@@ -41,6 +41,7 @@ public static class Converter
         => submissions.Select(item => new SubmissionDto
         {
             StudentId = item.StudentId,
+            ActivityId = item.ActivityId,
             GradeId = item.GradeId,
         });
 }
